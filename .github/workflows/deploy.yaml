@@ -41,18 +41,24 @@ jobs:
           fetch-depth: 1    
           ref: main
       
+  
+      # https://github.com/dsaltares/fetch-gh-release-asset
       # https://github.com/zoni/obsidian-export/releases/tag/v22.11.0
       - name: Get latest obsidian-export
         uses: dsaltares/fetch-gh-release-asset@master
         with:
           repo: 'zoni/obsidian-export'
+          version: 'tags/v22.11.0'
           file: 'obsidian-export_Linux-x86_64.bin'
 
       - name: Run Obsidian export
         run: |
+          echo "============FILES============"
+          ls
           chmod +x obsidian-export_Linux-x86_64.bin
           rm -rf content
           obsidian-export_Linux-x86_64.bin _raw_content/content content
+          echo "============CONTENT============"
           ls content
         continue-on-error: false    
 
