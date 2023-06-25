@@ -1,10 +1,9 @@
-#content
+content
 public
 resources
 .DS_Store
 .idea
 content/.obsidian
-assets/indices/linkIndex.json
-assets/indices/contentIndex.json
+assets/indices/*.json
 linkmap
 .hugo_build.lock
