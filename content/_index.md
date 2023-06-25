@@ -4,6 +4,6 @@ enableToc: false
 enableFooter: true
 ---
 
-# Quartzite 1.0
+## Quartzite 1.0
 
 Hello world!
