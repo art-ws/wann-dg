@@ -37,7 +37,7 @@ jobs:
       - name: Checkout content  
         uses: actions/checkout@v3
         with:
-          path: .raw_content
+          path: _raw_content
           fetch-depth: 1    
           ref: main
       
@@ -45,7 +45,9 @@ jobs:
         run: |
           ls
           echo "--------------"
-          ls .raw_content
+          rm -rf content
+          mv _raw_content/content content
+          ls content
           echo "--------------"
         continue-on-error: true    
 
