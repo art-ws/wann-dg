@@ -20,8 +20,8 @@ description:
   Wikilink support, backlinks, local graph, tags, and link previews.
 page_title:
   "Quartzite"
-links: []
- # - link_name: Twitter
- #   link: https://twitter.com/_jzhao
- # - link_name: GitHub
- #   link: https://github.com/jackyzha0
+links: 
+  - link_name: Twitter
+    link: https://twitter.com/_jzhao
+  - link_name: GitHub
+    link: https://github.com/art-ws/wann-dg
