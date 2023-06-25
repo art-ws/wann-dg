@@ -47,6 +47,7 @@ jobs:
           echo "--------------"
           rm -rf content
           mv _raw_content/content content
+          [ -f content/Index.md ] && [ ! -f content/_index.md ] && mv content/Index.md content/_index.md
           ls content
           echo "--------------"
         continue-on-error: true    
