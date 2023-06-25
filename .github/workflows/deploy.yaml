@@ -55,6 +55,7 @@ jobs:
         run: |
           chmod +x ./obsidian-export_Linux-x86_64.bin
           rm -rf content
+          mkdir content
           ./obsidian-export_Linux-x86_64.bin ./_raw_content/content ./content
           ls content
         continue-on-error: false    
