@@ -48,7 +48,7 @@ jobs:
           repo: 'zoni/obsidian-export'
           file: 'obsidian-export_Linux-x86_64.bin'
 
-      - name: Run scripts
+      - name: Run Obsidian export
         run: |
           chmod +x obsidian-export_Linux-x86_64.bin
           rm -rf content
