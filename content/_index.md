@@ -8,6 +8,6 @@ enableFooter: true
 
 Hello world!
 
-## Playground 
+## Playground
 
 [[CJK + Latex Support (测试)]]
