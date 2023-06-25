@@ -41,11 +41,18 @@ jobs:
           fetch-depth: 1    
           ref: main
       
+      # https://github.com/zoni/obsidian-export/releases/tag/v22.11.0
+      - name: Get latest obsidian-export
+        uses: dsaltares/fetch-gh-release-asset@master
+        with:
+          repo: 'zoni/obsidian-export'
+          file: 'obsidian-export_Linux-x86_64.bin'
+
       - name: Run scripts
         run: |
+          chmod +x obsidian-export_Linux-x86_64.bin
           rm -rf content
-          mv _raw_content/content content
-          [ -f content/Index.md ] && [ ! -f content/_index.md ] && mv content/Index.md content/_index.md
+          obsidian-export_Linux-x86_64.bin _raw_content/content content
           ls content
         continue-on-error: false    
 
