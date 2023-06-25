@@ -53,12 +53,9 @@ jobs:
 
       - name: Run Obsidian export
         run: |
-          echo "============FILES============"
-          ls
-          chmod +x obsidian-export_Linux-x86_64.bin
+          chmod +x ./obsidian-export_Linux-x86_64.bin
           rm -rf content
-          obsidian-export_Linux-x86_64.bin _raw_content/content content
-          echo "============CONTENT============"
+          ./obsidian-export_Linux-x86_64.bin ./_raw_content/content ./content
           ls content
         continue-on-error: false    
 
