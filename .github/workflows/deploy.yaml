@@ -47,7 +47,7 @@ jobs:
           mv _raw_content/content content
           [ -f content/Index.md ] && [ ! -f content/_index.md ] && mv content/Index.md content/_index.md
           ls content
-        continue-on-error: true    
+        continue-on-error: false    
 
       # https://github.com/jackyzha0/hugo-obsidian
       - name: Build link index
