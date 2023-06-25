@@ -1,4 +1,4 @@
-name: XXX
+name: Quartzite
 enableToc: true
 openToc: true
 enableLinkPreview: true
@@ -12,13 +12,11 @@ enableContextualBacklinks: true
 enableRecentNotes: true
 enableGitHubEdit: true
 enableMermaid: true
-GitHubLink: https://github.com/jackyzha0/quartz/tree/hugo/content
+GitHubLink: https://github.com/art-ws/wann-dg/tree/main/content
 search:
   enableSemanticSearch: false
-  operandApiKey: "REPLACE-WITH-YOUR-OPERAND-API-KEY"
-  operandIndexId: "REPLACE-WITH-YOUR-OPERAND-INDEX-ID"
 description:
-  Host your second brain and digital garden for free. Quartz features extremely fast full-text search,
+  Host your second brain and digital garden for free. Quartzite features extremely fast full-text search,
   Wikilink support, backlinks, local graph, tags, and link previews.
 page_title:
   "Quartzite"
