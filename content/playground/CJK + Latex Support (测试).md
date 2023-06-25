@@ -5,7 +5,7 @@ tags:
 - example-tag
 ---
 
-## Chinese, Japanese, Korean Support
+## Chinese, Japanese, Korean Support.
 
 几乎在我们意识到之前，我们已经离开了地面。
 
