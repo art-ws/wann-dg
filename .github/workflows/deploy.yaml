@@ -43,17 +43,14 @@ jobs:
       
       - name: Run scripts
         run: |
-          ls
-          echo "--------------"
           rm -rf content
           mv _raw_content/content content
           [ -f content/Index.md ] && [ ! -f content/_index.md ] && mv content/Index.md content/_index.md
           ls content
-          echo "--------------"
         continue-on-error: true    
 
       # https://github.com/jackyzha0/hugo-obsidian
-      - name: Build Link Index
+      - name: Build link index
         uses: jackyzha0/hugo-obsidian@v2.20
         with:
           index: true
@@ -75,7 +72,7 @@ jobs:
           HUGO_ENV: production
         run: hugo --minify
 
-      - name: Deploy
+      - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

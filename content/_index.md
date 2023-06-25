@@ -7,3 +7,7 @@ enableFooter: true
 ## The world as a neural network
 
 Hello world!
+
+## Playground 
+
+[[CJK + Latex Support (测试)]]
