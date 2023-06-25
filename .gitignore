@@ -1,6 +1,6 @@
 #content
-#public
-#resources
+public
+resources
 .DS_Store
 .idea
 content/.obsidian
