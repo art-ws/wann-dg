@@ -12,7 +12,6 @@ async function drawGraph(baseUrl, isHome, pathColors, graphConfig) {
 
   const container = document.getElementById("graph-container")
   const { index, links, content } = await fetchData
-
   // Use .pathname to remove hashes / searchParams / text fragments
   const cleanUrl = window.location.origin + window.location.pathname
 
@@ -24,7 +23,7 @@ async function drawGraph(baseUrl, isHome, pathColors, graphConfig) {
 
   // Links is mutated by d3. We want to use links later on, so we make a copy and pass that one to d3
   // Note: shallow cloning does not work because it copies over references from the original array
-  const copyLinks = JSON.parse(JSON.stringify(links))
+  const copyLinks = JSON.parse(JSON.stringify(links)) || [];
 
   const neighbours = new Set()
   const wl = [curPage || "/", "__SENTINEL"]
