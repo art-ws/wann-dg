@@ -1,0 +1,3 @@
+<div id="tree-container"></div>
+{{ $js := resources.Get "js/tree.js" | resources.Fingerprint "md5" }}
+<script type="module" src="{{ $js.Permalink }}"></script>

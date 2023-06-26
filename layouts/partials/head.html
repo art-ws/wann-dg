@@ -31,7 +31,7 @@
     end }}
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
+ 
   <!-- HTML Favicon -->
   {{ $favicon := $data.favicon  | default $.Site.Data.config.favicon | default (slice (dict "rel" "shortcut icon" "type" "image/png" "href" "icon.png")) }}
   {{ $type := (printf "%T" $favicon) }}
@@ -44,6 +44,9 @@
   {{ end }}
 
   <!-- CSS Stylesheets and Fonts -->
+  
+  {{partial "bsHead.html" .}}
+
   {{$sass := resources.Match "styles/[!_]*.scss" }}
   {{$css := slice }}
   {{range $sass}}
@@ -120,7 +123,9 @@
         }))
 
       const render = () => {
-      // NOTE: everything within this callback will be executed for every page navigation. This is a good place to put JavaScript that loads or modifies data on the page, adds event listeners, etc. If you are only dealing with basic DOM replacement, use the init function
+      // NOTE: everything within this callback will be executed for every page navigation. 
+      // This is a good place to put JavaScript that loads or modifies data on the page, adds event listeners, etc. 
+      // If you are only dealing with basic DOM replacement, use the init function
 
       const siteBaseURL = new URL(BASE_URL);
       const pathBase = siteBaseURL.pathname;
@@ -147,8 +152,8 @@
       {{end}}
 
       {{if $data.enableFooter | default $.Site.Data.config.enableFooter}}
-      const footer = document.getElementById("footer")
-      if (footer) {
+      const gc = document.getElementById("graph-container")
+      if (gc) {
         const container = document.getElementById("graph-container")
         // retry if the graph is not ready
         if (!container) return requestAnimationFrame(render)
@@ -224,6 +229,7 @@
         throwOnError : false
       });
       {{end}}
+      drawTree && drawTree();
     };
   </script>
   {{if $data.enableSPA | default $.Site.Data.config.enableSPA}}
@@ -247,6 +253,8 @@
   </script>
   {{end}}
   {{ $trimmedURL := trim (index (split .Site.BaseURL "://") 1) "/" }}
-  <script defer data-domain="{{$trimmedURL}}" src="https://plausible.io/js/script.js"></script>
+  {{/*
+    <script defer data-domain="{{$trimmedURL}}" src="https://plausible.io/js/script.js"></script>
+  */}} 
   <script>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
 </head>

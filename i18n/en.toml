@@ -20,7 +20,7 @@ other = "showing first 10 results"
 other = "Tag"
 
 [backlinks]
-other = "On this page"
+other = "Backlinks"
 
 [no_backlinks]
 other = "No backlinks found"
@@ -59,7 +59,7 @@ other = "first 3 {{ .notes }}"
 other = "Search for something..."
 
 [toc]
-other = "Table of Contents"
+other = "On this page"
 
 [copyright]
 other = "Made by {{ .name }} using <a href=\"https://github.com/jackyzha0/quartz\">Quartz</a>, © {{ .year }}"

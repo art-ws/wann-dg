@@ -4,18 +4,35 @@
 
 <body>
 {{partial "search.html" .}}
-<div class="singlePage">
-    <!-- Begin actual content -->
-    {{partial "header.html" .}}
-    <article>
-        <h1>{{ i18n "tag" }}: {{ .Title }}</h1>
-        {{with .Params.description}}
-            <p>{{.}}</p>
-        {{end}}
-        {{partial "page-list.html" .Paginator.Pages}}
-        {{ template "_internal/pagination.html" . }}
-    </article>
-    {{partial "contact.html" .}}
+<div class="singlePage mt-2">
+    <div class="container-fluid">
+      <div class="row">
+        
+        <div class="col-md-2">
+          {{partial "left.html" .}}
+        </div>
+
+        <div class="col-md-10">
+            <article>
+                <h1>{{ i18n "tag" }}: {{ .Title }}</h1>
+                {{with .Params.description}}
+                    <p>{{.}}</p>
+                {{end}}
+                {{partial "page-list.html" .Paginator.Pages}}
+                {{ template "_internal/pagination.html" . }}
+            </article>          
+        </div>
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        {{partial "bottom.html" .}}
+      </div>
+    </div>
+    
 </div>
 </body>
 </html>
+

@@ -20,40 +20,20 @@ html {
   }
 }
 
-.singlePage {
-  margin: 0 auto;
-  max-width: 1000px;
-  @media all and (max-width: 1200px) {
-    padding: 25px 5vw;
-  }
-}
-
-
 body {
-  margin: 0;
-  height: 100vh;
-  width: 100vw;
-  max-width: 100%;
-  box-sizing: border-box;
   background-color: var(--light);
 }
 
 h1, h2, h3, h4, h5, h6, thead {
-  font-family: var(--font-header);
   color: var(--dark);
-  font-weight: revert;
-  margin: 2rem 0 0;
-  padding: 2rem auto 1rem;
-
+ 
   &:hover > .hanchor {
     color: var(--secondary);
   }
 }
 
 .hanchor {
-  font-family: var(--font-header);
-  opacity: 0.8;
-  transition: color 0.3s ease;
+  display: none;
   color: var(--dark);
 }
 
@@ -180,13 +160,8 @@ blockquote {
 }
 
 article {
-  & > h1 {
-    margin-top: 2em;
-    font-size: 2em;
-  }
-
+  
   & > .meta {
-    margin: 0 0 1em 0;
     opacity: 0.7;
   }
 
@@ -194,12 +169,13 @@ article {
     font-weight: 600;
 
     &.internal-link {
+  
       text-decoration: none;
       background-color: transparentize(#8f9fa9, 0.85);
-      padding: 0 0.1em;
-      margin: auto -0.1em;
-      border-radius: 3px;
-
+      padding: 0 5px;
+      margin: auto 0;
+      border-radius: 8px;
+  
       &.broken {
         opacity: 0.5;
         background-color: transparent;
@@ -232,12 +208,11 @@ article {
   }
 
   & > li > a {
-    border-radius: 8px;
+    border-radius: 15px;
     border: var(--outlinegray) 1px solid;
     padding: 0.2em 0.5em;
     &::before {
       content: "#";
-      margin-right: 0.3em;
       color: var(--outlinegray);
     }
   }
@@ -251,13 +226,6 @@ article {
 sup > a {
   text-decoration: none;
   padding: 0 0.1em 0 0.2em;
-}
-
-#page-title {
-  margin: 0;
-  & > a {
-    font-family: var(--font-header);
-  }
 }
 
 a {
@@ -308,17 +276,6 @@ hr {
 }
 
 .page-end {
-  display: flex;
-  flex-direction: row;
-  gap: 2em;
-
-  @media all and (max-width: 780px) {
-    flex-direction: column;
-  }
-
-  & > * {
-    flex: 1 0 0;
-  }
 
   & > .backlinks-container {
     & > ul {
@@ -329,8 +286,7 @@ hr {
       & > li {
         margin: 0.5em 0;
         padding: 0.25em 1em;
-        border: var(--outlinegray) 1px solid;
-        border-radius: 5px
+        border-left: var(--outlinegray) 2px solid;
       }
     }
   }
@@ -344,9 +300,9 @@ hr {
 
     & > svg {
       margin-bottom: -5px;
-
     }
   }
+  
 }
 
 .centered {

@@ -1,0 +1,25 @@
+<article>
+ 
+  {{if .Title}}<h1>{{ .Title }}</h1>{{end}}
+
+  {{partial "textprocessing.html" . }}
+  
+  <ul class="tags">
+      {{ range (.GetTerms "tags") }}
+      <li><a href="{{ .Permalink }}">
+      {{if (eq $.Site.Language.Lang "en")}}
+        {{ .LinkTitle | humanize }}
+      {{else}}
+        {{ .LinkTitle }}
+      {{end}}
+        </a>
+       </li>
+      {{ end }}
+  </ul> 
+  
+  <p class="meta">
+    {{ i18n "last_updated" }} {{ partial "date-fmt.html" .}} 
+      {{ partial "github.html" . }}
+  </p>
+
+</article>

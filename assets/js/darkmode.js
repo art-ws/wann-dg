@@ -6,10 +6,13 @@ const syntaxTheme = document.querySelector("#theme-link");
 {{ $darkSyntax := resources.Get "styles/_dark_syntax.scss" | resources.ToCSS (dict "outputStyle" "compressed") | resources.Fingerprint "md5" | resources.Minify  }}
 {{ $lightSyntax := resources.Get "styles/_light_syntax.scss" | resources.ToCSS (dict "outputStyle" "compressed") | resources.Fingerprint "md5" | resources.Minify  }}
 
+let isDark = false;
 if (currentTheme) {
   document.documentElement.setAttribute('saved-theme', currentTheme);
-  syntaxTheme.href = currentTheme === 'dark' ?  '{{ $darkSyntax.Permalink }}' :  '{{ $lightSyntax.Permalink }}';
+  isDark = currentTheme === 'dark';
+  syntaxTheme.href = isDark ?  '{{ $darkSyntax.Permalink }}' :  '{{ $lightSyntax.Permalink }}'; 
 }
+
 
 const switchTheme = (e) => {
   if (e.target.checked) {
@@ -22,6 +25,8 @@ const switchTheme = (e) => {
     localStorage.setItem('theme', 'light')
     syntaxTheme.href = '{{ $lightSyntax.Permalink }}';
   }
+  
+  document.body.classList.toggle("dark-mode");
 }
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -34,4 +39,9 @@ window.addEventListener('DOMContentLoaded', () => {
   if (currentTheme === 'dark') {
     toggleSwitch.checked = true
   }
+  
+  if (isDark) {
+    document.body.classList.add("dark-mode");
+  }
+ 
 })
