@@ -10,7 +10,7 @@ Hello world!!!
 
 ## Playground
 
-[[playground/note|note]]
+This is inline link [[playground/note|note]] which looks awesome!
 
 [[playground/CJK + Latex Support (测试)]]
 
