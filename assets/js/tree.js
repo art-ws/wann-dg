@@ -1,64 +1,125 @@
 // https://unpkg.com/simple-treeview@0.0.9/docs/index.html
-
+// https://www.npmjs.com/package/simple-treeview
 import { BootstrapTreeView } from 'https://unpkg.com/simple-treeview/dist/treeview.bootstrap.js';
 
-console.log('drawTree.loaded', BootstrapTreeView)
+//console.log('drawTree.loaded', BootstrapTreeView)
 
 let treeView = null;
 
-async function buildTree(el){
-  const { content } = await fetchData
-  const paths = Object.keys(content);
-  const folders = {};
-  paths.forEach(x => {
-    const i = x.lastIndexOf('/');
-    if (i > 0) {
-      const folder = x.substring(0, i);
-      folders[folder] = folders[folder] || {
-        depth: folder.split('/').length-1,
-        items: []
-      };
-      folders[folder].items.push(x);  
+function getTreeModel({ content }) {
+
+  const itemDepth = (s) => s.split('/').length - 1;
+
+  const toItem = (key, level, x) => {
+    return {
+      key,
+      label: x.title || key,
+      tags: x.tags || [],
+      children: [],
+      level,
+      dir: x.dir
     }
-  }) 
-  console.log('folders', folders);
+  }
+  const root = toItem('/', 0, content['/'])
+
+  const result = {};
+
+  const allFiles = Object.keys(content);
+ 
+  const getDir = (s) => {
+    const i = s.lastIndexOf('/');
+    if (i > 0) {
+      const dir = s.substring(0, i);
+      return content[dir] ? null : dir
+    } else {
+      return null;
+    }
+  }
+  const getDirs = (paths) => {
+    let res = [...(new Set(paths.map(getDir)))];
+    res.sort().reverse();    
+    return res.filter(Boolean);
+  };
+
+  const allDirs = getDirs(allFiles);
+  console.log('allFiles', allFiles);
+  console.log('allDirs', allDirs);
+  const allItems = [...allDirs, ...allFiles];
+
+  const isFile = (key) => content[key]
+
+  const isInDir = (file, dir) => {
+    if (dir === '/') return true;
+    const p1 = file.split(dir);
+    if (p1.length === 2 && !p1[0] && p1[1]) {
+      const p2 = p1[1].split("/");
+      return p2.length === 2 && !p2[0] && p2[1];
+    }
+    return false;
+  }
+
+  const getFiles = (key, paths) => {
+    return paths.filter(x => isInDir(x, key))
+  };
+
+  const getChildren = (key) => allItems.filter(x => isInDir(x, key));
+
+  const getDirPart = (s, i) => s.split('/')[i] || null;
+
+  const handleItem = (itm, parent) => {
+    console.log(`!!!:${itm.level}`, itm);
+    if (result[itm.key]) return;
+    result[itm.key] = itm;
+    itm.parent = parent;
+    if (parent) {
+      parent.children.push(itm);
+    }
+    const childrenPaths = getChildren(itm.key).filter(x => isInDir(x, itm.key));
+    console.log(`!!!.childrenPaths for '${itm.key}'`, childrenPaths);
+    const dirs = childrenPaths.filter(x => !isFile(x));
+    console.log(`!!!.dirs for '${itm.key}'`, dirs);
+    const files = childrenPaths.filter(x => !isFile(x));
+    //console.log(`!!!.files for '${itm.key}'`, files);
+    dirs.forEach(dirKey => {
+      const dir = toItem(dirKey, itm.level + 1, { dir: true });
+      handleItem(dir, itm)
+    })
+    files.forEach(fileKey => {
+      const f = content[fileKey];
+      const file = toItem(fileKey, itm.level + 1, f);
+      handleItem(file, itm)
+    })
+  }
+
+  handleItem(root, null);
+
+  return result;
+}
+
+async function buildTree(el) {
+  const { content } = await fetchData
+  console.log('content', content);
+  const model = getTreeModel({ content })
+  console.log('model', model);
   const opts = {
     provider: {
-        async getChildren(id) {
-            if (!id) {
-              const root = content['/']; 
-                return [
-                    { id: '/', label: root.title || '/', state: 'expanded' }
-                ];
-            } else {
-                await new Promise((resolve, reject) => setTimeout(resolve, 100));
-                const depth = id.split('/').length;
-                if (id === '/') {
-                  const items = folders['/'].items.filter(x => x.depth === depth);
-                  console.log('!!items', id, depth, items)
-                }
-                switch (id) {
-                    case 'p1':
-                        return [
-                            { id: 'c1', label: 'Child #1', icon: { classes: ['bi', 'bi-file-earmark'] }, state: 'collapsed' },
-                            { id: 'c2', label: 'Child #2', icon: { classes: ['bi', 'bi-file-earmark'] } }
-                        ];
-                    case 'p2':
-                        return [
-                            { id: 'c3', label: 'Child #3', icon: { classes: ['bi', 'bi-file-earmark'] } },
-                            { id: 'c4', label: 'Child #4', icon: { classes: ['bi', 'bi-file-earmark'] } }
-                        ];
-                    case 'c1':
-                        return [
-                            { id: 'g1', label: 'Grandchild #1', icon: { classes: ['bi', 'bi-clock'] } }
-                        ];
-                    default:
-                        return [];
-                }
-            }
+      async getChildren(id) {
+        if (!id) {
+          const root = model['/'];
+          return [
+            { id: '/', label: root.label || '/', state: 'expanded' }
+          ];
+        } else {
+          const item = model[id];
+          if (item) {
+            return (item.children || []).map(x => ({ id: x.key, label: x.label, icon: { classes: [] }, state: x.dir ? 'collapsed': undefined }))
+          } else {
+            return [];
+          }
         }
+      }
     }
-}; 
+  };
   const tree = new BootstrapTreeView(el, opts);
   return tree;
 }
