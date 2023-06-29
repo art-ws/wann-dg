@@ -1,5 +1,5 @@
 async function drawGraph(baseUrl, isHome, pathColors, graphConfig) {
-
+  window.baseUrl = baseUrl;
   let {
     depth,
     enableDrag,

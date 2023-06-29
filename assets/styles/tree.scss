@@ -1,0 +1,27 @@
+.tree {
+
+  .treeview-node .expando {
+    margin-left: 0;
+  }
+  
+  .treeview-node .icon {
+    margin: 0 3px;
+  }
+  
+  i.bi.expando.bi-dot {
+    display: none;
+  }
+
+  .treeview-node .icon img {
+    width: 16px;
+  }
+  
+  .treeview-node.active  {
+    color: red;
+  }
+  
+  .treeview-node {
+    cursor: pointer;
+    padding: 2px 0px;
+  }
+}
