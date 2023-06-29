@@ -107,7 +107,7 @@ async function buildTree(el) {
     onNodeClicked(...args);
     const d = args[0];
     const baseUrl = window.baseUrl || window.location.origin;
-    const href = `${baseUrl}${decodeURI(d.id)}`
+    const href = `${baseUrl}${decodeURI(d.id)}/`
     console.log('href', href)
     window.Million.navigate(new URL(href), ".singlePage")
     plausible("Tree Node Click", {
@@ -135,7 +135,7 @@ function drawTree() {
   buildTree(el).then((t) => {
     window.treeView = t;
     done()
-  },done)
+  }, done)
 }
 
 window.drawTree = drawTree;
