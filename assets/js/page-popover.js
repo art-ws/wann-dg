@@ -3,15 +3,15 @@ const self = {
   active: false,
   open: (opts) => {
     self.current = opts;
-    const {ppEl} = self;
+    const { ppEl } = self;
     ppEl.classList.add('visible');
     if (opts.el) ppEl.appendChild(opts.el);
     self.active = true;
-  }, 
+  },
   close: () => {
     if (!self.current) return;
     self.ppEl.classList.remove('visible');
-    if (self.current.onClose){
+    if (self.current.onClose) {
       self.current.onClose();
     }
     self.current = null;
@@ -22,9 +22,10 @@ const self = {
 window.popoverController = self;
 
 function initPagePopover() {
-  self.ppEl = document.getElementById("page-popover");   
-  document.getElementById("page-popover-close")?.addEventListener('click', () => {
-    self.close();  
+  self.ppEl = document.getElementById("page-popover");
+  const ppc = document.getElementById("page-popover-close");
+  if (ppc) ppc.addEventListener('click', () => {
+    self.close();
   });
 }
 
