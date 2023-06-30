@@ -6,6 +6,7 @@
   //--font-header: "Inter";
   //--font-mono: "Fira Code"
   --color-accent: hsl( 254 , 80% , 68% );
+  --color-light-grey: #F0F0F0;
 }
 
 .text-upper-case {
@@ -95,29 +96,19 @@ details {
   font-size: 40px;
 }
 
-#TableOfContents > ol {
+details ol {
   counter-reset: section;
+  padding-inline-start: 0px;
+
   & > li {
-    counter-increment: section;
-    & > ol {
-      counter-reset: subsection;
-      & > li {
-        counter-increment: subsection;
-        &::marker {
-          content: counter(section) "." counter(subsection) "  ";
-        }
-      }
-    }
+    border-left: 3px solid var(--gray);
+    padding: 5px 15px;    
   }
 
   & > li::marker {
-    content: counter(section) "  ";
+    content: " ";
   }
 
-  & > li::marker, & > li > ol > li::marker {
-    font-family: var(--font-body);
-    font-weight: 700;
-  }
 }
 
 table {
@@ -191,7 +182,6 @@ article {
   }
 
   & a {
-    font-weight: 600;
 
     &.internal-link {
   
@@ -243,19 +233,12 @@ article {
   }
 }
 
-.backlinks a {
-  font-weight: 600;
-  font-size: 0.9rem;
-}
-
 sup > a {
   text-decoration: none;
   padding: 0 0.1em 0 0.2em;
 }
 
 a {
-  font-size: 1em;
-  font-weight: 700;
   text-decoration: none;
   transition: all 0.2s ease;
   color: var(--secondary);

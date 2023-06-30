@@ -1,5 +1,22 @@
 .tree {
 
+  .leaf.level-1, .leaf.level-2, .leaf.level-3, 
+  .leaf.level-4, .leaf.level-5, .leaf.level-6, 
+  .leaf.level-7, .leaf.level-8, .leaf.level-9 {
+    border-left: 1px solid var(--color-light-grey);
+    padding-left: 15px;
+    color: var(--gray);
+  }
+
+  .treeview-node.leaf:hover {
+    border-left: 1px solid var(--gray);  
+  }
+
+  .treeview-node.leaf.active {
+    border-left: 1px solid var(--color-accent);
+    color: var(--color-accent);
+  }
+
   .treeview-node .expando {
     margin-left: 0;
     opacity: 0.6;
@@ -8,17 +25,14 @@
   .treeview-node:hover .expando {
     opacity: 1;
   }
-  
-  .treeview-node .icon {
-    margin: 0 3px;
-  }
-  
-  i.bi.expando.bi-dot {
-    display: none;
+   
+  i.expando {
+    color: var(--gray);
   }
 
-  .treeview-node .icon img {
-    width: 16px;
+  .expando span {
+    margin-left: 5px;
+    color: var(--gray);
   }
   
   .treeview-node.active  {
@@ -27,6 +41,6 @@
   
   .treeview-node {
     cursor: pointer;
-    padding: 2px 0px;
+    padding: 3px 0px;
   }
 }

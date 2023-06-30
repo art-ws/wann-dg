@@ -76,7 +76,8 @@ class TreeView {
     for (const { id, label, icon, state, active } of children) {
       const metadata = { id, label, level, icon, state: state || CollapsibleState.None, loading: false };
       const el = this.renderNode(metadata);
-      el.style.paddingLeft = `${level}em`;
+      el.style.marginLeft = `${level}em`;
+      el.classList.add(`level-${level}`)
       if (active) el.classList.add('active')
       this._setMetadata(el, metadata);
       if (insertAfterEl) {
@@ -146,13 +147,20 @@ class BootstrapTreeView extends TreeView {
    */
   renderNode(node) {
     const el = document.createElement('div');
-    el.classList.add('treeview-node', 'list-group-item', 'list-group-item-action');
-    const expando = document.createElement('i');
-    expando.classList.add('bi', 'expando');
-    el.appendChild(expando);
-    const icon = document.createElement('i');
-    icon.classList.add('icon');
+    el.classList.add('treeview-node');
+    const isNeedExpando = [CollapsibleState.Collapsed, CollapsibleState.Expanded].includes(node.state||'')
+    
+    const expando = isNeedExpando ? document.createElement('i'): null;
+    if (expando){
+      expando.classList.add('bi', 'expando');
+      el.appendChild(expando);      
+    }
+
+    el.classList.add(expando ? 'expando': 'leaf');
+    
     if (node.icon) {
+      const icon = document.createElement('i');
+      icon.classList.add('icon');
       if (typeof node.icon === 'string') {
         icon.classList.add(node.icon);
       }
@@ -164,22 +172,25 @@ class BootstrapTreeView extends TreeView {
         img.src = node.icon.src;
         icon.appendChild(img);
       }
+      el.appendChild(icon);
     }
-    el.appendChild(icon);
+    
     const span = document.createElement('span');
     span.innerText = node.label;
     el.appendChild(span);
-    switch (node.state) {
-      case CollapsibleState.Collapsed:
-        expando.classList.add('bi-chevron-right');
-        break;
-      case CollapsibleState.Expanded:
-        expando.classList.add('bi-chevron-down');
-        break;
-      case CollapsibleState.None:
-        expando.classList.add('bi-dot');
-        break;
-    }
+    if (expando){
+      switch (node.state) {
+        case CollapsibleState.Collapsed:
+          expando.classList.add('bi-chevron-right');
+          break;
+        case CollapsibleState.Expanded:
+          expando.classList.add('bi-chevron-down');
+          break;
+        case CollapsibleState.None:
+          expando.classList.add('bi-dot');
+          break;
+      }
+    }    
     return el;
   }
   /**
@@ -369,7 +380,6 @@ async function buildTree(el, { activeId }) {
               {
                 id: x.key,
                 label: x.label,
-                icon: { classes: [] },
                 active: !x.dir ? (activeId ? x.key === activeId : false) : false,
                 state: x.dir ? (collapseState[x.key] || CollapsibleState.Collapsed ) : undefined
               })) // collapsed
