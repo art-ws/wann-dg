@@ -23,7 +23,7 @@ window.popoverController = self;
 
 function initPagePopover() {
   self.ppEl = document.getElementById("page-popover");   
-  document.getElementById("page-popover-close").addEventListener('click', () => {
+  document.getElementById("page-popover-close")?.addEventListener('click', () => {
     self.close();  
   });
 }
