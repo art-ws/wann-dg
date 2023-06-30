@@ -3,11 +3,18 @@
   integrity="sha256-+7jaYCp29O1JusNWHaYtgUn6EhuP0VaFuswhNV06MyI="
   crossorigin="anonymous"
 ></script>
-<h5>{{ i18n "interactive_graph" }}</h5>
-<div id="graph-wrap-container">
-  <a id="graph-big" href="javascript:false">Open</a>
-  <div id="graph-container"></div>
-</div>
+
+<details open>
+  <summary class="text-upper-case">{{ i18n "interactive_graph" }}</summary>
+  <div id="graph-wrap-container">
+    <a id="graph-expand" class="graph-btn" title="Expand" href="javascript:false">
+      <i class="bi bi-arrow-up-right"></i>
+    </a>
+    <div id="graph-container">
+    </div>
+  </div>  
+</details>  
+
 <style>
   :root {
     --g-node: var(--secondary);

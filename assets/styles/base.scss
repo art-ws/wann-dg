@@ -8,11 +8,15 @@
   --color-accent: hsl( 254 , 80% , 68% );
 }
 
+.text-upper-case {
+  text-transform: uppercase;
+}
+
 // typography
 html {
   scroll-behavior: smooth;
   &:lang(ar) {
-    & p, & h1, & h2, & h3, article, header {
+    & p, & h1, & h2, & h3, article, header, aside {
       direction: rtl;
       text-align: right;
     }
@@ -52,28 +56,47 @@ tbody, li, p {
   line-height: 1.5em;
 }
 
-.mainTOC {
-  border-radius: 5px;
-  padding: 0.75em 0;
-
-  & details {
-    & summary {
-      cursor: zoom-in;
-      font-family: var(--font-header);
-      color: var(--dark);
-      font-weight: 700;
-    }
-
-    &[open] summary {
-      cursor: zoom-out;
-    }
+details {
+  & summary {
+    cursor: zoom-in;
+    font-family: var(--font-header);
+    color: var(--dark);
+    font-weight: 700;
   }
+
+  &[open] summary {
+    cursor: zoom-out;
+  }
+}
+
+.graph-btn {
+  float: right;
+  padding: 10px;
+}
+
+#page-popover {
+  display: none;
+  position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100%;
+    overflow: scroll;
+    display: none;
+    backdrop-filter: blur(30px);
+}
+#page-popover.visible {
+  display: block;  
+}
+
+#page-popover-close {
+  float: right;
+  font-size: 40px;
 }
 
 #TableOfContents > ol {
   counter-reset: section;
-  margin-left: 0;
-  padding-left: 1.5em;
   & > li {
     counter-increment: section;
     & > ol {
@@ -315,33 +338,37 @@ hr {
   flex: 1 1 auto;
 }
 
-header {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin: 1em 0 2em;
+aside {
 
-  & > h1 {
-    font-size: 2em;
+  .home-link-container {
+    font-size: 24px;
   }
 
-  & > nav {
-    @media all and (max-width: 600px) {
-      display: none;
-    }
+  #search-icon:hover {
+    border: 1px solid #80808030;
   }
 
   #search-icon {
     background-color: var(--lightgray);
-    border-radius: 4px;
+    border: 1px solid var(--lightgray);
+    border-radius: 6px;
     height: 2em;
     display: flex;
     align-items: center;
     cursor: pointer;
     & > p {
-      display: inline;
-      padding: 0 1.5em 0 2em;
+      padding-right: 10px;
     }
+    & > span {
+      margin-right: 5px;
+      padding: 0px 5px;
+      font-size: 13px;
+      border: 1px solid lightgrey;
+      border-radius: 5px;
+      color: grey;
+      min-width: 57px;
+    }
+    
   }
 
   & svg {

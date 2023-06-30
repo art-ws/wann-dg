@@ -81,6 +81,10 @@
   resources.Minify }}
   <script defer src="{{$popover.Permalink}}"></script>
 
+  {{ $pagePopover := resources.Get "js/page-popover.js" | resources.Fingerprint "md5" |
+  resources.Minify }}
+  <script defer src="{{$pagePopover.Permalink}}"></script>
+
   <!-- Optional scripts -->
   {{ if $data.enableCodeBlockTitle | default $.Site.Data.config.enableCallouts }}
   {{ $codeTitle := resources.Get "js/code-title.js" | resources.Fingerprint "md5" | resources.Minify }}
@@ -152,6 +156,8 @@
       )
       {{end}}
 
+      initPagePopover && initPagePopover();
+      
       {{if $data.enableFooter | default $.Site.Data.config.enableFooter}}
       const gc = document.getElementById("graph-container")
       if (gc) {

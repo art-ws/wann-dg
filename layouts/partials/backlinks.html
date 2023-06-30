@@ -1,5 +1,7 @@
-<h5>{{ i18n "backlinks" }}</h5>
-<ul class="backlinks">
+
+<details open>
+  <summary class="text-upper-case">{{ i18n "backlinks" }}</summary>
+  <ol class="backlinks">
     {{$url := urls.Parse .Site.BaseURL }}
     {{$host := strings.TrimRight "/" $url.Path }}
     {{$curPage := strings.TrimPrefix $host (strings.TrimRight "/" .Page.RelPermalink)}}
@@ -27,4 +29,6 @@
       {{ i18n "no_backlinks" }}
     </li>
     {{end}}
-</ul>
+</ol>
+</details>
+

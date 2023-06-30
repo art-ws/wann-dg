@@ -20,10 +20,10 @@ other = "showing first 10 results"
 other = "Tag"
 
 [backlinks]
-other = "Backlinks"
+other = "Links to this page"
 
 [no_backlinks]
-other = "No backlinks found"
+other = "No links found"
 
 [home]
 other = "Home"

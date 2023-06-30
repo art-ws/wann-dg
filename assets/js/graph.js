@@ -167,6 +167,7 @@ async function drawGraph(baseUrl, isHome, pathColors, graphConfig) {
     .attr("fill", color)
     .style("cursor", "pointer")
     .on("click", (_, d) => {
+      popoverController?.close();
       // SPA navigation
       const targ = `${baseUrl}${decodeURI(d.id).replace(/\s+/g, "-")}/`
       window.Million.navigate(new URL(targ), ".singlePage")
@@ -277,20 +278,30 @@ async function drawGraph(baseUrl, isHome, pathColors, graphConfig) {
     labels.attr("x", (d) => d.x).attr("y", (d) => d.y)
   })
 
-  const graphBigEl = document.getElementById("graph-big");
+  
+  const expandEl = document.getElementById("graph-expand");
   const ppoEl = document.getElementById("page-popover");
   const gwcEl = document.getElementById("graph-wrap-container");
 
-  let isAttached = false;
-  graphBigEl.addEventListener('click', () => {
-    console.log('e', isAttached);
-    if (isAttached){
-      gwcEl.appendChild(container)
-      isAttached = false;
-    } else {
-      ppoEl.appendChild(container);
-      isAttached = true;
-    }
+  ppoEl.addEventListener('click', () => {
+    ppoEl.classList.remove('visible');  
+  });
+
+  expandEl.addEventListener('click', () => {
+
+    const svg = container.querySelector('svg');
+    console.log('svg', svg);
+    svg.setAttribute('width','100%');
+    svg.setAttribute('height','100%');
+    popoverController.open({
+      el: container,
+      onOpen: () => {
+        return null;
+      },
+      onClose: () => {
+        gwcEl.appendChild(container)
+      }
+    })
     return false;
   })
 }
