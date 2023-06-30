@@ -5,14 +5,14 @@
 <body>
 {{partial "search.html" .}}
 <div class="singlePage">
-    <div class="container-fluid">
+    <div class="container-xxl">
       <div class="row">
         
-        <div class="col-md-2">
+        <div class="col-md-4">
           {{partial "left.html" .}}
         </div>
 
-        <div class="col-md-10">
+        <div class="col-md-8">
             <article>
                 <h1>{{ i18n "all_posts" . }}</h1>
                 {{with .Params.description}}
