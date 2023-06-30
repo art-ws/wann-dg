@@ -135,6 +135,7 @@ async function drawGraph(baseUrl, isHome, pathColors, graphConfig) {
     })
   }
 
+  const LINE_WIDTH = 0.7
   // draw links between nodes
   const link = svg
     .append("g")
@@ -143,7 +144,7 @@ async function drawGraph(baseUrl, isHome, pathColors, graphConfig) {
     .join("line")
     .attr("class", "link")
     .attr("stroke", "var(--g-link)")
-    .attr("stroke-width", 2)
+    .attr("stroke-width", LINE_WIDTH)
     .attr("data-source", (d) => d.source.id)
     .attr("data-target", (d) => d.target.id)
 
@@ -274,5 +275,22 @@ async function drawGraph(baseUrl, isHome, pathColors, graphConfig) {
       .attr("y2", (d) => d.target.y)
     node.attr("cx", (d) => d.x).attr("cy", (d) => d.y)
     labels.attr("x", (d) => d.x).attr("y", (d) => d.y)
+  })
+
+  const graphBigEl = document.getElementById("graph-big");
+  const ppoEl = document.getElementById("page-popover");
+  const gwcEl = document.getElementById("graph-wrap-container");
+
+  let isAttached = false;
+  graphBigEl.addEventListener('click', () => {
+    console.log('e', isAttached);
+    if (isAttached){
+      gwcEl.appendChild(container)
+      isAttached = false;
+    } else {
+      ppoEl.appendChild(container);
+      isAttached = true;
+    }
+    return false;
   })
 }

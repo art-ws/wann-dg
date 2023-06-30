@@ -2,6 +2,11 @@
 
   .treeview-node .expando {
     margin-left: 0;
+    opacity: 0.6;
+  }
+
+  .treeview-node:hover .expando {
+    opacity: 1;
   }
   
   .treeview-node .icon {
@@ -17,7 +22,7 @@
   }
   
   .treeview-node.active  {
-    color: red;
+    color: var(--color-accent);
   }
   
   .treeview-node {

@@ -4,14 +4,17 @@
   crossorigin="anonymous"
 ></script>
 <h5>{{ i18n "interactive_graph" }}</h5>
-<div id="graph-container"></div>
+<div id="graph-wrap-container">
+  <a id="graph-big" href="javascript:false">Open</a>
+  <div id="graph-container"></div>
+</div>
 <style>
   :root {
     --g-node: var(--secondary);
-    --g-node-active: var(--primary);
+    --g-node-active: var(--color-accent);
     --g-node-inactive: var(--visited);
     --g-link: var(--outlinegray);
-    --g-link-active: #5a7282;
+    --g-link-active: var(--color-accent);
   }
 </style>
 {{ $js := resources.Get "js/graph.js" | resources.Fingerprint "md5" }}

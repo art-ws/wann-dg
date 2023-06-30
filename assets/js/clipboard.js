@@ -20,7 +20,8 @@ const addCopyButtons = () => {
             button.className = "clipboard-button";
             button.type = "button";
             button.innerHTML = svgCopy;
-            button.ariaLabel = "opy the shown code";
+            button.ariaLabel = "Copy the shown code";
+            button.title = button.ariaLabel;
             // remove every second newline from lastCodeBlock.innerText
             button.addEventListener("click", () => {
                 navigator.clipboard.writeText(lastCodeBlock.innerText.replace(/\n\n/g, "\n")).then(

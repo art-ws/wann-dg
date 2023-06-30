@@ -3,16 +3,17 @@
 {{ partial "head.html" . }}
 
 <body>
+{{partial "page-popover.html" .}}  
 {{partial "search.html" .}}
-<div class="singlePage mt-2">
-    <div class="container-fluid">
+<div class="singlePage">
+    <div class="container-fluidm">
       <div class="row">
         
-        <div class="col-md-2">
+        <div class="col-md-3">
           {{partial "left.html" .}}
         </div>
 
-        <div class="col-md-7">
+        <div class="col-md-6">
           {{partial "middle.html" .}}          
         </div>
 

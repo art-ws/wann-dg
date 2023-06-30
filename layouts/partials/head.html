@@ -70,6 +70,7 @@
   {{ $s := resources.Get $scriptname | resources.ExecuteAsTemplate $scriptname . | resources.Fingerprint "md5" | resources.Minify }}
   <script src="{{$s.Permalink}}"></script>
   {{end}}
+  
   {{partial "katex.html" .}}
 
   {{partial "mermaid.html" .}}
@@ -206,6 +207,7 @@
           link.addEventListener('click', clickHandler, {once: true})
         }
       }
+      drawTree && drawTree();
     }
 
     const init = (doc = document) => {
@@ -228,8 +230,7 @@
         },
         throwOnError : false
       });
-      {{end}}      
-      drawTree && drawTree();
+      {{end}}            
     };
   </script>
   {{if $data.enableSPA | default $.Site.Data.config.enableSPA}}
