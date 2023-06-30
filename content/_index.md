@@ -6,7 +6,7 @@ enableFooter: true
 
 ## The world as a neural network
 
-Hello world!!!!!
+Hello world!!!
 
 ## Playground
 
