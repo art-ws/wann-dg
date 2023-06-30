@@ -340,21 +340,21 @@ const writeCollapseState = (key, state) => {
 
 async function buildTree(el, { activeId }) {
   const { content } = await fetchData
-  console.log('content', content);
+  //console.log('content', content);
   const model = getTreeModel({ content })
-  console.log('model', model);
+  //console.log('model', model);
   const opts = {
     events: {
       onNodeCollapseState: ({ metadata, state }) => {
-        console.log('onNodeCollapseState', { metadata, state })
+        //console.log('onNodeCollapseState', { metadata, state })
         writeCollapseState(metadata.id, state);
       },
       onSelectionChanged: (...args) => {
-        console.log('onSelectionChanged', args)
+        //console.log('onSelectionChanged', args)
         const d = args[0];
         const baseUrl = window.baseUrl || window.location.origin;
         const href = `${baseUrl}${decodeURI(d.id)}/`
-        console.log('href', href)
+        //console.log('href', href)
         window.Million.navigate(new URL(href), ".singlePage")
         plausible("Tree Node Click", {
           props: {
@@ -397,7 +397,7 @@ async function buildTree(el, { activeId }) {
 
 function drawTree() {
   const el = document.getElementById('tree-container');
-  console.log('drawTree', !!window.treeView, window.treeViewBuilding, el.children.length);
+  //console.log('drawTree', !!window.treeView, window.treeViewBuilding, el.children.length);
   if (window.treeViewBuilding) return;
   window.treeViewBuilding = window.treeViewBuilding || 0;
   window.treeViewBuilding++;
