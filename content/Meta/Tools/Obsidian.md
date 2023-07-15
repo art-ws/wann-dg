@@ -1,0 +1,4 @@
+---
+title: Obsidian
+tags: ["Tool"]
+---
