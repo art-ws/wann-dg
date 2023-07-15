@@ -5,6 +5,7 @@ tags:
 - example-tag
 ---
 
+
 ## Chinese, Japanese, Korean Support
 
 几乎在我们意识到之前，我们已经离开了地面。
@@ -14,6 +15,8 @@ tags:
 私たちがそれを知るほぼ前に、私たちは地面を離れていました。
 
 ## Latex
+
+On top of [KaTex](https://katex.org/).
 
 Block math works with two dollar signs `$$...$$`
 

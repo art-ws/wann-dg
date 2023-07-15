@@ -1,5 +1,5 @@
 ---
-title: Victor Agroskin
+title: Victor
 tags: [ "Meta/Team" ]
 ---
 

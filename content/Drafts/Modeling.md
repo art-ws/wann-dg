@@ -17,7 +17,7 @@ Author: [[Meta/Team/Victor|Victor]]
 
 ## What is a mathematical model ?
 
-Mathematical model is usually a dynamical system which consists of *variables* (changeable, non-constant numbers) and some *equations* (rules)  under which they perform some evolution.
+Mathematical model is usually a [[Terms/Dynamical system|dynamical system]] which consists of *variables* (changeable, non-constant numbers) and some *equations* (rules)  under which they perform some evolution.
 
 To use the model, scientists have to create a bridge between abstract mathematical objects and the real world; _variables _(or functions of them) are_ _matching with the numbers that can be observed in experiments using some measuring devices (coordinates, velocities, voltages, time intervals, pressures, temperatures etc). The quality of the model can then be defined as “how close are such values that we get as a calculation from our theory (model) and as measurement in the experiment.”
 
