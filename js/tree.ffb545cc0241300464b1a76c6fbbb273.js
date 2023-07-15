@@ -397,13 +397,15 @@ async function buildTree(el, { activeId }) {
         } else {
           const item = model[id];
           if (item) {
-            return (item.children || []).map(x => (
+            const nodes = (item.children || []).map(x => (
               {
                 id: x.key,
                 label: x.label,
                 active: !x.dir ? (activeId ? x.key === activeId : false) : false,
                 state: x.dir ? (collapseState[x.key] || CollapsibleState.Collapsed ) : undefined
               })) // collapsed
+              nodes.sort((a,b) => a.label.localeCompare(b.label))
+              return nodes;
           } else {
             return [];
           }
