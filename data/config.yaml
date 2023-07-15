@@ -21,7 +21,11 @@ description:
 page_title:
   "Quartzite"
 links: 
+  - link_name: Artificial Neural Computing
+    link: https://artificialneuralcomputing.com/
   - link_name: YouTube
     link: https://www.youtube.com/@ArtificialNeuralComputing
+  - link_name: Telegram
+    link: https://t.me/ArtificialNeuralComputing  
   - link_name: GitHub
     link: https://github.com/art-ws/wann-dg

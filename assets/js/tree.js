@@ -285,13 +285,34 @@ function getTreeModel({ content }) {
       return null;
     }
   }
+
+  const splitDirs = (s) => {
+    const r = [];
+    const p = s.split('/');
+    for (let i = 1; i < p.length; i++) {
+      const p1 = p.slice(0, i+1);
+      r.push(p1.join('/')) ;     
+    }
+    return r;
+  }
+
   const getDirs = (paths) => {
-    let res = [...(new Set(paths.map(getDir)))];
-    res.sort().reverse();
-    return res.filter(Boolean);
+    //console.log('getDirs.1', paths)
+
+    let res = [...(new Set(paths.map(getDir)))].filter(Boolean);
+    //console.log('getDirs.2', res)
+   
+    let res1 = [];
+    res.forEach(x => {
+      res1.push(splitDirs(x))
+    })
+    res1 =  [...(new Set([].concat(...res1)))];
+    res1.sort().reverse();
+    return res1.filter(Boolean);
   };
 
   const allDirs = getDirs(allFiles);
+  //console.log('allDirs.3', allDirs);
   const allItems = [...allDirs, ...allFiles].map(x => ({ path: x, level: itemDepth(x) }));
   const isFile = (key) => content[key]
 
