@@ -10,4 +10,4 @@ tags: [ "Meta/Team" ]
 [[Meta/Team/Team|Team]] 
 Computer Science, IT 
 
-[[_index|About this site]]
+[[_index]]
